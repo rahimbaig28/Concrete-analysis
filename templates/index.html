@@ -3,19 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <title>Concrete Strength Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #dfe9f3, #ffffff);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            margin: 60px auto;
+            padding: 40px 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        .unit-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #2980b9;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1e6091;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 20px;
+            color: #27ae60;
+            margin-top: 20px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <h2>Enter Concrete Mix Details</h2>
-    <form action="/predict" method="post">
-        {% for feature in features %}
-            <label>{{ feature }}:</label><br>
-            <input type="number" step="any" name="{{ feature }}" required><br><br>
-        {% endfor %}
-        <input type="submit" value="Predict Strength">
-    </form>
 
-    {% if prediction is not none %}
-        <h3>Predicted Strength: {{ prediction }} MPa</h3>
-    {% endif %}
+    <div class="container">
+        <h2>Concrete Strength Predictor</h2>
+        <form action="/predict" method="post">
+            <label>Cement</label>
+            <div class="unit-label">kg/m³</div>
+            <input type="number" step="any" name="Cement" required>
+
+            <label>Blast Furnace Slag</label>
+            <div class="unit-label">kg/m³</div>
+            <input type="number" step="any" name="Blast Furnace Slag" required>
+
+            <label>Fly Ash</label>
+            <div class="unit-label">kg/m³</div>
+            <input type="number" step="any" name="Fly Ash" required>
+
+            <label>Water</label>
+            <div class="unit-label">kg/m³</div>
+            <input type="number" step="any" name="Water" required>
+
+            <label>Superplasticizer</label>
+            <div class="unit-label">kg/m³</div>
+            <input type="number" step="any" name="Superplasticizer" required>
+
+            <label>Coarse Aggregate</label>
+            <div class="unit-label">kg/m³</div>
+            <input type="number" step="any" name="Coarse Aggregate" required>
+
+            <label>Fine Aggregate</label>
+            <div class="unit-label">kg/m³</div>
+            <input type="number" step="any" name="Fine Aggregate" required>
+
+            <label>Age</label>
+            <div class="unit-label">days</div>
+            <input type="number" step="1" name="Age" required>
+
+            <input type="submit" value="Predict Strength">
+        </form>
+
+        {% if prediction is not none %}
+            <div class="result">
+                <h3>Predicted Strength: {{ prediction }} MPa</h3>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        Created by Rahim Baig
+    </footer>
+
 </body>
 </html>
