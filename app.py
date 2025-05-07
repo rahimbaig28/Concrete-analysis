@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request
 import joblib
 import pandas as pd
+import os
 
-app = Flask(__name__)
+# Set template_folder to current directory
+app = Flask(__name__, template_folder='.')
 
 # Load model and scaler
 model = joblib.load("xgboost_concrete_model.pkl")
