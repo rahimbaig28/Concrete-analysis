@@ -6,231 +6,138 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --background-start: #1f2023; /* Darker start for a modern feel */
-            --background-end: #2c3e50; /* Darker end */
-            --card-background: #ffffff;
-            --text-color: #333;
-            --input-border-color: #ced4da;
-            --input-focus-border: #80bdff;
-            --success-color: #28a745;
-            --light-text: #f8f9fa;
-        }
+    --primary-color: #0d6efd;
+    --secondary-color: #adb5bd;
+    --background-start: #141e30;
+    --background-end: #243b55;
+    --card-background: #ffffff;
+    --text-color: #212529;
+    --input-border-color: #ced4da;
+    --input-focus-border: #0d6efd;
+    --success-color: #198754;
+    --light-text: #f8f9fa;
+    --error-color: #dc3545;
+}
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--light-text);
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
-        }
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, var(--background-start), var(--background-end));
+    color: var(--light-text);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background: var(--card-background);
-            color: var(--text-color);
-            margin: 30px auto;
-            padding: 30px 45px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 8px 15px rgba(0,0,0,0.15);
-            border-radius: 15px;
-            animation: slideInUp 0.8s ease-out forwards;
-            opacity: 0;
-        }
+.container {
+    background: var(--card-background);
+    color: var(--text-color);
+    padding: 35px 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    animation: slideInUp 0.7s ease-out forwards;
+    max-width: 650px;
+    width: 100%;
+    opacity: 0;
+}
 
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: textFocusIn 1s ease 0.3s forwards;
+    opacity: 0;
+}
 
-        h2 {
-            text-align: center;
-            font-family: 'Orbitron', sans-serif; /* Techy font for title */
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: 25px;
-            font-weight: 700;
-            font-size: 2em;
-            letter-spacing: 1px;
-            animation: textFocusIn 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.5s both;
-        }
-        
-        @keyframes textFocusIn {
-            0% {
-                filter: blur(12px);
-                opacity: 0;
-            }
-            100% {
-                filter: blur(0px);
-                opacity: 1;
-            }
-        }
+label {
+    display: block;
+    margin: 12px 0 5px;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: #495057;
+    transition: color 0.3s ease;
+}
 
-        label {
-            font-weight: 500;
-            display: block;
-            margin: 15px 0 5px;
-            color: #555;
-            font-size: 0.95em;
-            animation: fadeIn 0.5s ease-in-out forwards;
-            animation-delay: 0.8s; /* Stagger label appearance */
-            opacity: 0;
-        }
+.input-group {
+    margin-bottom: 15px;
+    animation: fadeIn 0.4s ease-in-out forwards;
+    opacity: 0;
+}
 
-        .input-group {
-            position: relative;
-            margin-bottom: 10px;
-            animation: fadeIn 0.5s ease-in-out forwards;
-            opacity: 0;
-        }
+.unit-label {
+    font-size: 0.8em;
+    color: var(--secondary-color);
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
 
-        /* Stagger animation for input groups */
-        .input-group:nth-of-type(1) { animation-delay: 1.0s; }
-        .input-group:nth-of-type(2) { animation-delay: 1.1s; }
-        .input-group:nth-of-type(3) { animation-delay: 1.2s; }
-        .input-group:nth-of-type(4) { animation-delay: 1.3s; }
-        .input-group:nth-of-type(5) { animation-delay: 1.4s; }
-        .input-group:nth-of-type(6) { animation-delay: 1.5s; }
-        .input-group:nth-of-type(7) { animation-delay: 1.6s; }
-        .input-group:nth-of-type(8) { animation-delay: 1.7s; }
+input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--text-color);
+    transition: 0.3s ease;
+    box-sizing: border-box;
+}
 
-        .unit-label {
-            font-size: 0.8em;
-            color: var(--secondary-color);
-            margin-bottom: 5px;
-            margin-top: -2px;
-        }
+input[type="number"]:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    outline: none;
+    transform: scale(1.02);
+}
 
-        input[type="number"] {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--input-border-color);
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1em;
-            color: var(--text-color);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-        }
+input[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(to right, #0d6efd 0%, #0a58ca 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
 
-        input[type="number"]:focus {
-            border-color: var(--input-focus-border);
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-            outline: none;
-            transform: scale(1.02); /* Slight scale on focus */
-        }
-        
-        input[type="number"]::placeholder {
-            color: #aaa;
-        }
+input[type="submit"]:hover {
+    background-position: right center;
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+}
 
-        input[type="submit"] {
-            width: 100%;
-            background-image: linear-gradient(to right, #007bff 0%, #0056b3 51%, #007bff 100%);
-            background-size: 200% auto;
-            color: white;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.4s ease;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-            animation: fadeIn 0.5s ease-in-out 1.8s forwards;
-            opacity:0;
-        }
+.result {
+    margin-top: 25px;
+    padding: 15px;
+    background: #d1e7dd;
+    color: var(--success-color);
+    border-left: 5px solid var(--success-color);
+    border-radius: 8px;
+    animation: popIn 0.6s ease-out forwards;
+    display: none;
+}
 
-        input[type="submit"]:hover {
-            background-position: right center;
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-        }
-        
-        input[type="submit"]:active {
-            transform: translateY(-1px) scale(1.01);
-            box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3);
-        }
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.85em;
+    color: var(--light-text);
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
 
-        .result {
-            text-align: center;
-            font-size: 1.1em;
-            color: var(--success-color);
-            margin-top: 25px;
-            padding: 15px;
-            background-color: #e9f7ef;
-            border-radius: 8px;
-            border: 1px solid #a6d9b8;
-            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-            opacity: 0;
-            transform: scale(0.5);
-        }
-
-        @keyframes popIn {
-            from {
-                opacity: 0;
-                transform: scale(0.5) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .result h3 {
-            margin: 0;
-            font-weight: 500;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            color: var(--light-text);
-            width: 100%;
-            margin-top: 30px;
-            background-color: rgba(0,0,0,0.2);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            animation: fadeIn 1s ease-in-out 2s forwards;
-            opacity: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: inherit;
-            z-index: -1;
-            animation: backgroundPan 20s linear infinite alternate;
-        }
-
-        @keyframes backgroundPan {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
 
     </style>
 </head>
